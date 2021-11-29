@@ -1,0 +1,58 @@
+.App {
+    background: url("../../images/bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+}
+
+.input-container {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    overflow: hidden;
+    padding: 5px;
+}
+
+.input-container input {
+    padding: 15px 30px;
+    background-color: transparent;
+    border: none;
+}
+
+.input-container button {
+    background-color: cornflowerblue;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.task-lists {
+    list-style: none;
+    background-color: white;
+    padding: 15px;
+    border-radius: 15px;
+    margin-top: 10px;
+}
+.task-lists li {
+    border-bottom: 1px solid #eee;
+}
+.task-lists li input{
+    padding: 5px;
+    border:1px solid #ddd;
+    border-radius: 7px;
+}
+.done{
+    background-color: #eee;
+}
+.done .todo-text{
+    opacity: 0.3;
+    text-decoration: line-through;
+}
+
+.done-text{
+    color:cornflowerblue;
+    font-weight: bold;
+}
