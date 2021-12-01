@@ -1,8 +1,6 @@
-import React, {useContext, useState} from "react"
-import {TodoContext} from "../contexts/TodoContextProvider";
+import React, {useState} from "react"
 
-const TodoList = () => {
-    const {tasks, checkHandler, updateHandler,deleteHandler} = useContext(TodoContext)
+const TodoList = ({tasks,checkHandler,updateHandler,deleteHandler}) => {
     const [editable, setEditable] = useState(null)
     const [updatedValue, setUpdatedValue] = useState(null)
     const editHandler = (event, id) => {
@@ -17,7 +15,7 @@ const TodoList = () => {
     }
 
     return (
-        tasks.length > 0 ?
+        tasks?.length > 0 ?
             <ul className={`task-lists col-12`}>
                 {
                     tasks.map(item =>
@@ -26,23 +24,25 @@ const TodoList = () => {
                             {
                                 editable === item.id ?
                                     <div className={`d-flex justify-content-between align-items-center p-3 `}>
-                                        <input type="text" value={updatedValue ? updatedValue : item.data} onChange={(e) => setUpdatedValue(e.target.value)}/>
+                                        <input type="text" value={updatedValue ? updatedValue : item.text} onChange={(e) => setUpdatedValue(e.target.value)}/>
                                         <span
                                             className={`text-primary`}
                                             onClick={
-                                                () => {
-                                                    setUpdatedValue(null)
-                                                    setEditable(null)
-                                                    updateHandler(item.id, updatedValue)
+                                                async () => {
+                                                    await updateHandler(item.id, updatedValue)
+                                                    await setEditable(null)
+                                                     setUpdatedValue(null)
                                                 }
                                             }
                                         >save</span>
                                         <span className={`text-secondary`} onClick={(e) => closeEditHandler(e)}>cancel</span>
                                     </div>
                                     :
-                                    <div className={`d-flex justify-content-between align-items-center p-3`} onClick={(e) => checkHandler(e, item.id)}>
+                                    <div className={`d-flex justify-content-between align-items-center p-3`}
+                                         onClick={(e) => checkHandler(e, item.id)}
+                                    >
                                     <span className={`todo-text`}>
-                                        {item.data}
+                                        {item.text}
                                     </span>
                                         {
                                             item.checked ?
